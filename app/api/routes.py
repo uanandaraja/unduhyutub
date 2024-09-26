@@ -13,6 +13,10 @@ def remove_file(path: str) -> None:
     except Exception as e:
         print(f"Error while deleting file {path}: {e}")
 
+@router.get("/health")
+async def health_check():
+    return {"status": "ok"}
+
 @router.post("/download_audio")
 async def download_audio(video_request: VideoRequest, downloader: AudioDownloader = Depends(AudioDownloader)):
     try:
